@@ -2,10 +2,9 @@
 
 This is a simple demo that draws upon the [2600 101 tutorial by Kirk Israel](http://www.atariage.com/2600/programming/2600_101/index.html).
 
-The code has a lot of comments about what each section is doing, and all we're going to
-do is make the playfield look like this:
-
 ![screenshot](syncherts.png)
+
+See the main [README](../README.md) for more details.
 
 ## building
 

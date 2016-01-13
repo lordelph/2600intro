@@ -244,12 +244,12 @@ ScanLoop
 	sty COLUPF
 
     ; load our playfield data
-    LDA PFData0,X
-    sta PF0
-    LDA PFData1,X
-    sta PF1
     LDA PFData2,X
     sta PF2
+    LDA PFData1,X
+    sta PF1
+    LDA PFData0,X
+    sta PF0
     DEX
     BNE MorePlayfield
     LDX #18 ;reset playfield counter
