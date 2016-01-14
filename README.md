@@ -3,7 +3,7 @@
 These are materials for a lightning talk given at [SyncHerts](http://www.meetup.com/SyncHerts/events/225920918/) by [Paul Dixon](http://linkedin.com/in/pjdixon)
 on 14 Jan 2016.
 
-The slides from the talk are [available via SlideShare|http://www.slideshare.net/PaulDixon4/atari-2600-programming-for-fun]
+The slides from the talk are [available via SlideShare](http://www.slideshare.net/PaulDixon4/atari-2600-programming-for-fun)
 
 The object of the talk was inspire at least one person to try their hand at
 Atari 2600 programming just for the interesting challenges it presents. If you're
