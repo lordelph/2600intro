@@ -15,7 +15,7 @@ to let me know how you get on!
 * [stella](http://stella.sourceforge.net/) - a multi-platform Atari VCS emulator. This is where you'll play and debug your games
 * [dasm](http://sourceforge.net/projects/dasm-dillon/files/dasm-dillon/2.20.11/) - a macro assember - this turns our 6507 assembly language into a binary file we can run on an Atari emulator like stella.
 * [make](https://www.gnu.org/software/make/) or similar is handy if you're already familiar with Makefiles, but you can get by perfectly well without it for a simple project.
-* [2600intro](https://github.com/lordelph/2600intro) - this very repository!
+* [2600intro](https://github.com/lordelph/2600intro) - this very repository - the syncherts folder contains all the code used to generate the example in the presentation.
 * It helps if you can use editor for which you can find some syntax colouring support for
 6502 assember - I personally like using [Sublime](http://www.sublimetext.com/)
 
@@ -37,6 +37,8 @@ pain of developing for the Atari VCS!
 What we're going to do is make the background, or playfield, display this:
 
 ![screenshot](syncherts/syncherts.png)
+
+All the code is in the syncherts folder of this repository.
 
 Our starting point will be the excellent template in [Kirk Israel's tutorial](http://www.atariage.com/2600/programming/2600_101/index.html).
 
