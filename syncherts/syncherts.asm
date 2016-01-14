@@ -241,15 +241,15 @@ ScanLoop
 
 	STA WSYNC 	;Wait for the previous line to finish
 
-	sty COLUPF
+	STY COLUPF  ;changes the playfield colour to make things interesting
 
     ; load our playfield data
-    LDA PFData2,X
-    sta PF2
-    LDA PFData1,X
-    sta PF1
     LDA PFData0,X
-    sta PF0
+    STA PF0
+    LDA PFData1,X
+    STA PF1
+    LDA PFData2,X
+    STA PF2
     DEX
     BNE MorePlayfield
     LDX #18 ;reset playfield counter

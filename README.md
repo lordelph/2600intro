@@ -3,6 +3,8 @@
 These are materials for a lightning talk given at [SyncHerts](http://www.meetup.com/SyncHerts/events/225920918/) by [Paul Dixon](http://linkedin.com/in/pjdixon)
 on 14 Jan 2016.
 
+The slides from the talk are [available via SlideShare|http://www.slideshare.net/PaulDixon4/atari-2600-programming-for-fun]
+
 The object of the talk was inspire at least one person to try their hand at
 Atari 2600 programming just for the interesting challenges it presents. If you're
 reading this, I'm glad it piqued your interest - tweet [@lordelph](http://twitter.com/lordelph)
@@ -22,15 +24,17 @@ to let me know how you get on!
 * [Stella Programmers Guide by Steve Wright](http://www.alienbill.com/2600/101/docs/stella.html) all the gory details you could need.
 * [Atari 2600 for Newbies by Andrew Davie](http://www.randomterrain.com/atari-2600-memories-tutorial-andrew-davie-01.html) an excellent 25 part tutorial taking you through every aspect of writing code for the Atari 2600
 * [2600 101 by Kirk Israel](http://www.atariage.com/2600/programming/2600_101/index.html) another great tutorial written by someone writing as they learn.
+* [Racing the Beam](http://www.amazon.co.uk/Racing-Beam-Computer-Platform-Studies/dp/026201257X) is an absorbing book going into both technical and
+cultural elements of the Atari VCS.
 * [Kirk Israel's playfield editor](http://www.alienbill.com/2600/playfieldpal.html?vertsize=16)
 
-## Getting a taste in 5 minutes...
+# Getting a taste in 5 minutes...
 
-(To do - need to rewrite this section!)
+The talk was limited to 5 mins, and I'll waste 90 seconds just introducing myself
+and the console. So I've got about 3 minutes to try and illustrate the pleasure and
+pain of developing for the Atari VCS!
 
-It's very difficult to do anything *amazing* in 5 minutes, but hopefully this will
-get a few people interesting in trying things for themselves. What we're going to do is
-make the background, or playfield, display this:
+What we're going to do is make the background, or playfield, display this:
 
 ![screenshot](syncherts/syncherts.png)
 
@@ -39,9 +43,10 @@ Our starting point will be the excellent template in [Kirk Israel's tutorial](ht
 This template clears the Atari's memory and sets everything up with predictable values, and
 shows how main game loop operates.
 
-The playfield is made up of 20 bits, which we can turn on or off a 'pixel' on the left half
-of a scanline. The same pattern can then be repeated, or reversed, on the right half of the
-scanline.
+As each scanline is drawn, we can control 20 bits which affect the playfield, turning
+a 'pixel' (a vague concept on the Atari) or or off in the left half of the display. The
+right half uses the same bits, which can be mirrored. So this means we've got a resolution of
+40x192 to play with.
 
 I designed the 'SYNCHERTS' playfield using this [playfield editor](http://www.alienbill.com/2600/playfieldpal.html?vertsize=16), as the bit pattern isn't entirely intuitive to
 layout by hand. This editor will spit out some literals you can include in your assembly.
@@ -69,12 +74,17 @@ use the X register to index into those arrays of playfield data.
 Counting down means our data must be stored upside down, something the playfield editor
 will do for you automatically.
 
-But why count down?
+## But why count down?
 
 Sheer economy. We do not have many cycles available to set up the scanline, so the
 fewer instructions the better. When we count down, we use the DEX instruction to
 decrement the X register. This will set the processors 'Z' (zero) flag when it reaches
 zero, and we can use the 'BNE' instruction to branch if the Z flag hasn't been set.
+
+If we counted up from zero, we'd need an extra comparison instruction, and as you'll
+see, we can't afford many cycles.
+
+## Let's look at some real 6502 code...
 
 So, inside the scanline loop, here's how we load the playfield registers using the X
 register as the offset into our data arrays
@@ -97,7 +107,7 @@ Then we lower our X register, and if we've reached the end, we reset it back to 
 means we never actually use the first value indexed by zero, but in this simple example we'll
 live with the wasted space!
 
-## let's count the cycles!
+## ...and now let's count the cycles!
 
 When programming the Atari 2600, you need to be constantly aware of how many
 cycles you've used. So let's see what our playfield setting code is going to cost us on
@@ -120,7 +130,7 @@ below where it should.
 Each scanline takes 160 color clocks, which runs on clock 3x faster than the CPU, so after
 the 22 cycles we do have 53 cycles in which we can do more work in preparation for the next cycle.
 
-## there's so much more!
+## There's so much more!
 
 This gives a taste of what's involved, but as well as the playfield, you've got the movement
 of player sprites, 'missiles' and a 'ball' to content with, as well as reading player joystick
