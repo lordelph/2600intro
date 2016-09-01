@@ -175,7 +175,7 @@ MainLoop
 	STA  WSYNC	; three...
 
 ;	We blew off that time of those three scanlines, though we could have
-;	done some logic there...but most programs will definately want the vertical blank time
+;	done some logic there...but most programs will definitely want the vertical blank time
 ;	that follows...
 ;	you might want to do a lot of things in those 37 lines...so many
 ;	things that you might become like Dirty Harry: "Did I use up 36 scanlines,
